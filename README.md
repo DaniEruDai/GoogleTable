@@ -8,7 +8,7 @@ pip install googletabletocsv
 ```python
 import googletabletocsv
 
-tableid = '1MZx_UtA_R8VEqZhqG860keRfvrCAEVPBeQ7Q9XjGJHQ'
+tableid = '1iVSut_5LLcXAeecJI73y0EmltL8mwg-9hEHaWP2UOp0'
 encoding = 'utf-8'
 save_directory = 'table.csv'
 
