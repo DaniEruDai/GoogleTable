@@ -2,7 +2,7 @@
 > **Простая функция , которая преобразует гугл таблицу по ссылке и сохраняет в csv файл**
 ## Установка | install
 ```
-pip install gtabletocsv
+pip install googletabletocsv
 ```
 ## Пример
 ```python
