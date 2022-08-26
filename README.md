@@ -6,7 +6,7 @@ pip install googletabletocsv
 ```
 ## Пример
 ```python
-import gtabletocsv
+import googletabletocsv
 
 tableid = '1MZx_UtA_R8VEqZhqG860keRfvrCAEVPBeQ7Q9XjGJHQ'
 encoding = 'utf-8'
