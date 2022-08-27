@@ -12,7 +12,9 @@ tableid = '1iVSut_5LLcXAeecJI73y0EmltL8mwg-9hEHaWP2UOp0'
 encoding = 'utf-8'
 save_directory = 'table.csv'
 
-gtabletocsv.tocsv(tableid,encoding,save_directory)
+gttc = GtableToCsv(tableid,encoding,save_directory)
+
+gttc.alltocsv(tableid,encoding,save_directory) # Делает из Гугл таблицы csv файл
 ```
 
 ## Где найти tableid ?
