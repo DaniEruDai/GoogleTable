@@ -5,6 +5,7 @@
 pip install googletabletocsv
 ```
 ## Пример
+### Импорт и инициализация
 ```python
 from googletabletocsv import GtableToCsv
 
