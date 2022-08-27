@@ -16,7 +16,7 @@ save_directory = 'table.csv'
 gttc = GtableToCsv(tableid,encoding,save_directory) # Инициализация класса
 ```
 ### Методы
-```
+```python
 get_column(column_num) # Возвращает колонку таблицы по её номеру
 
 get_line() # Возвращает строку таблицы по её номеру
