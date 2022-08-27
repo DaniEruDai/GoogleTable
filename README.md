@@ -25,7 +25,7 @@ alltocsv() # Делает из Гугл таблицы csv файл
 
 ## Где найти tableid ?
 >Найти ID таблицы можно на том месте , где находится **рука**                                     
->https://docs.google.com/spreadsheets/d/:wave:/gviz/tq?tqx=out:csv&sheet' 
+>https://docs.google.com/spreadsheets/d/:wave:/edit#gid=0
 
 ## Примечание
 >Важно чтобы таблица была открытой для общего доступа!
