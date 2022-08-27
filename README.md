@@ -19,7 +19,7 @@ gttc = GtableToCsv(tableid,encoding,save_directory) # Инициализация
 ```python
 get_column(column_num) # Возвращает колонку таблицы по её номеру
 
-get_line() # Возвращает строку таблицы по её номеру
+get_line(line_num) # Возвращает строку таблицы по её номеру
 
 alltocsv() # Делает из Гугл таблицы csv файл
 ```
