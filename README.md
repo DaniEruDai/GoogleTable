@@ -12,9 +12,15 @@ tableid = '1iVSut_5LLcXAeecJI73y0EmltL8mwg-9hEHaWP2UOp0'
 encoding = 'utf-8'
 save_directory = 'table.csv'
 
-gttc = GtableToCsv(tableid,encoding,save_directory)
+gttc = GtableToCsv(tableid,encoding,save_directory) # Инициализация класса
+```
+### Методы
+```
+get_column(column_num) # Возвращает колонку таблицы по её номеру
 
-gttc.alltocsv(tableid,encoding,save_directory) # Делает из Гугл таблицы csv файл
+get_line() # Возвращает строку таблицы по её номеру
+
+alltocsv() # Делает из Гугл таблицы csv файл
 ```
 
 ## Где найти tableid ?
@@ -25,7 +31,7 @@ gttc.alltocsv(tableid,encoding,save_directory) # Делает из Гугл та
 >Важно чтобы таблица была открытой для общего доступа!
 
 ## Полезные ссылки
->[Страница на PyPi](https://pypi.org/project/gtabletocsv/)
+>[Страница на PyPi](https://pypi.org/project/googletabletocsv)
 
 
 
