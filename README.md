@@ -1,5 +1,5 @@
 # ***Получение данных с Google таблиц***
-## Установка | install
+## Установка
 ```
 pip install recipientgsheets
 ```
