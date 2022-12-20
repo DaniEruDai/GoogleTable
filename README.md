@@ -1,36 +1,34 @@
 # ***Получение данных с Google таблиц***
 ____
 ### Установка
-```
-pip install recipientgsheets
+```cmd
+pip install googletable
 ```
 ### Импорт и инициализация
+
 ```python
-from recipientgsheets import RecipientGoogleSheets
+from googletable import GT
 
 tableid = '1iVSut_5LLcXAeecJI73y0EmltL8mwg-9hEHaWP2UOp0'
+gid = '0'
 encoding = 'utf-8'
-save_directory = 'table.csv'
 
-gttc = RecipientGoogleSheets(tableid,encoding,save_directory) # Инициализация класса
+GT(tableid,gid,encoding)
 ```
 ### Где найти tableid ?
->Найти ID таблицы можно на том месте , где находится **ExampleID**                                     
->https://docs.google.com/spreadsheets/d/ExampleID/edit#gid=0
-### Методы
-```python
-tocsv() # Делает из Гугл таблицы csv файл
+>tableid - ID таблицы гугл (Под верхними стрелками)
+> 
+>gid - ID листа таблицы (Над нижними стрелками )
 
-get_column(column_num) # Возвращает колонку таблицы по её номеру
+                                           ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    https://docs.google.com/spreadsheets/d/1iVSut_5LLcXAeecJI73y0EmltL8mwg-9hEHaWP2UOp0/edit#gid=0
+                                                                                        ↑↑↑↑↑↑↑↑↑↑
 
-get_line(line_num) # Возвращает строку таблицы по её номеру
 
-get_cell(column_num,line_num) # Возвращает нужную ячейку в str
-```
-## Примечание
->Важно чтобы таблица была открытой для общего доступа!
-## Полезные ссылки
->[Страница на GitHub](https://github.com/DaniEruDai/recipientgsheets)
+### Примечание
+>Важно чтобы таблица была открыта для общего доступа!
+### Полезные ссылки
+>[Страница на GitHub](https://github.com/DaniEruDai/GoogleTable)
 > | [Страница на PyPi](https://pypi.org/project/recipientgsheets)
 
 
