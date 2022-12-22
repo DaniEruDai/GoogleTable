@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 @dataclass
 class table(list):
-    data: list | tuple
+    data: list
 
     def tindex(self, ellement: int | str | float, exact_str=True) -> dict | list:
         """
@@ -41,6 +41,15 @@ class table(list):
             elif not exact_str:
                 dict_result[ellement] = result
         return dict_result
+
+    def to_list(self) -> list:
+        return list(self.data)
+
+    def to_tuple(self) -> tuple:
+        return tuple(self.data)
+
+    def cell(self, column_num: int, row_num: int):
+        return self.data[row_num][column_num]
 
 
 class GoogleTable:
@@ -84,7 +93,7 @@ class GoogleTable:
             return table(all_columns[column_num])
 
     def cell(self, column_num: int, row_num: int) -> str or int or float:
-        return str(self.columns(column_num)[row_num])
+        return self.columns(column_num).data[row_num]
 
     def column_names(self) -> list:
         return self.__df.columns
@@ -94,3 +103,6 @@ class GoogleTable:
         r = requests.get(url)
         with open(f'{filename}.{file_format}', 'wb') as f:
             f.write(r.content)
+
+
+print(GoogleTable('1iVSut_5LLcXAeecJI73y0EmltL8mwg-9hEHaWP2UOp0').column_names())
