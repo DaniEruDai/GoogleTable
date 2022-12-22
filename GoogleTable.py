@@ -103,6 +103,3 @@ class GoogleTable:
         r = requests.get(url)
         with open(f'{filename}.{file_format}', 'wb') as f:
             f.write(r.content)
-
-
-print(GoogleTable('1iVSut_5LLcXAeecJI73y0EmltL8mwg-9hEHaWP2UOp0').column_names())
