@@ -1,8 +1,49 @@
+from functools import reduce
 import pandas as pd
 import requests
 
+from dataclasses import dataclass
 
-class GT:
+
+@dataclass
+class table(list):
+    data: list | tuple
+
+    def tindex(self, ellement: int | str | float, exact_str=True) -> dict | list:
+        """
+        Получение индекса из таблицы
+        P.S - Если таблица представленна в виде колонок , то результаты принимают вид (строка,колонка)
+        """
+
+        """
+        В coincidences записывается список всех 
+        строк похожих на изначальную (ellement).
+        В случае с "точной строкой" будет всего
+        1 эллемент  
+        """
+        coincidences = set(
+            reduce(
+                lambda x1, x2: x1 + x2, [[s for s in i if ellement.lower() in s.lower()] for i in self.data]))
+
+        if len(coincidences) > 1 and exact_str:
+            return []
+
+        dict_result = {}
+        for ellement in coincidences:
+            rows = [found_object for found_object in self.data if ellement in found_object]
+            result = []
+            for row in rows:
+                index_column = row.index(ellement)
+                index_row = self.data.index(row)
+                result.append((index_column, index_row))
+            if exact_str:
+                return result
+            elif not exact_str:
+                dict_result[ellement] = result
+        return dict_result
+
+
+class GoogleTable:
     """
         tableid - ID таблицы гугл (Смотреть на стрелки 'вниз')
         gid - ID листа таблицы (Смотреть на стрелки 'вверх', P.S Первый лист всегда равен нулю)
@@ -18,33 +59,34 @@ class GT:
                      f'/export?format=csv&id={self.__tableid}&gid={gid} '
         self.__df = pd.read_csv(self.__URL, keep_default_na=False, na_filter=False, encoding=encoding)
 
-    def rows(self, row_num: int = None) -> list:
+    def rows(self, row_num: int = None) -> table:
         rows = self.__df.values.tolist()
         if row_num is None:
-            return rows
+            return table(rows)
         elif isinstance(row_num, int):
-            return rows[row_num]
+            return table(rows[row_num])
 
-    def columns(self, column_num: int = None, column_names_as_first_ellement: bool = False) -> list:
+    def columns(self, column_num: int = None, column_names_as_first_ellement: bool = False) -> table:
         all_table_rows = self.__df.values.tolist()
         all_columns = []
         for num in range(len(max(all_table_rows))):
             column = [str(i[num]) for i in all_table_rows]
 
             """!Добавляет название столбца первым эллементом списка!"""
-            if column_names_as_first_ellement: column.insert(0, self.__df.columns[num])
+            if column_names_as_first_ellement:
+                column.insert(0, self.__df.columns[num])
 
             all_columns.append(column)
 
         if column_num is None:
-            return all_columns
+            return table(all_columns)
         elif isinstance(column_num, int):
-            return all_columns[column_num]
+            return table(all_columns[column_num])
 
     def cell(self, column_num: int, row_num: int) -> str or int or float:
         return str(self.columns(column_num)[row_num])
 
-    def column_names(self):
+    def column_names(self) -> list:
         return self.__df.columns
 
     def tofile(self, filename: str = 'file', file_format: str = 'xlsx'):
