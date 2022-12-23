@@ -9,7 +9,7 @@ from dataclasses import dataclass
 class table(list):
     data: list
 
-    def tindex(self, ellement: int | str | float, exact_str=True) -> dict | list:
+    def tindex(self, ellement: int | str | float, exact_str=True) -> dict | list | tuple:
         """
         Получение индекса из таблицы
         P.S - Если таблица представленна в виде колонок , то результаты принимают вид (строка,колонка)
@@ -24,9 +24,11 @@ class table(list):
         coincidences = set(
             reduce(
                 lambda x1, x2: x1 + x2, [[s for s in i if ellement.lower() in s.lower()] for i in self.data]))
+        if exact_str:
+            coincidences = {ellement}
 
-        if len(coincidences) > 1 and exact_str:
-            return []
+        elif len(coincidences) > 1 and exact_str:
+            return ()
 
         dict_result = {}
         for ellement in coincidences:
@@ -36,10 +38,17 @@ class table(list):
                 index_column = row.index(ellement)
                 index_row = self.data.index(row)
                 result.append((index_column, index_row))
+
             if exact_str:
+                if len(result) == 1:
+                    result = result[0]
                 return result
+
             elif not exact_str:
+                if len(result) == 1:
+                    result = result[0]
                 dict_result[ellement] = result
+
         return dict_result
 
     def to_list(self) -> list:
